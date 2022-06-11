@@ -1,0 +1,14 @@
+~연습~
+git bash로 test.txt 파일 만들기
+
+vim test.txt(vim으로 텍스트 파일 생성 후 편집)
+i 키 (insert모드 전환, 취소는 esc키)
+- 내용 입력 = 지금 하는 중이죠~~ -
+:ㄱwq  ← ㄱ을 빼면 (저장 후 종료)
+cat test.txt(파일 읽기)
+cp test.txt test2.txt(파일 복사)
+
+여기까지 치고 난 저장 후 종료한다~~
+:wq
+:wq
+:
