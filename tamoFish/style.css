@@ -23,17 +23,38 @@
 }
 
 .searchArea {
-    width: 300px;
+    width: 300px; 
     height: 40px;
     background-color: green;
-  border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 24px;
+}
+
+.searchArea > form > input{
+  border: none;
+  width: 250px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0);
+  color:#fff;
+  padding-left: 10px;
+}
+
+.searchArea > form > span{
+  width: 50px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .nav {
   display: flex;
-  width:calc(1280px-300px)
-  background:blue 
+  justify-content: flex-end;
+  line-height: 86px;
+  width:calc(1280px - 300px);
+  background-color: blue;
 }
 .nav > li {
+  display: flex;
   margin-left: 84px;
+  
 }
