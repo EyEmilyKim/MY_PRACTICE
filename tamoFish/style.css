@@ -13,8 +13,17 @@
 }
 .contents1 {
   font-size: 20px;
-  font-weight: 100;
+  font-weight: lighter;
 }
+.contents2 {
+  font-size: 14px;
+  font-weight: 10;
+}
+.contents1_bold {
+  font-size: 18px;
+  font-weight: bold;
+}
+/* --- */
 
 .result {
   font-size: 24px;
@@ -36,7 +45,7 @@
 .searchArea {
     width: 300px; 
     height: 40px;
-    background-color: rgba(0,0,0,0,0);
+    background-color: #00000080;
     border-radius: 5px;
     margin-top: 24px;
 }
@@ -99,6 +108,7 @@
 }
 .intro_text {
   width: 100%;
+  padding-top: 231px;
   margin: 23.1px auto 23.1px auto; 
   text-align: center;
 }
@@ -107,3 +117,51 @@
   color:#fff;
 }
 
+/* main_text0 */
+
+.main_text0 {
+  width: 100%;
+  height: 601px;
+  margin-top: -132px;
+  background-color: #F1F2F3;
+}
+.main_text0 > h1{
+  padding-top: 116px;
+  text-align: center;
+}
+.main_text0 > .contents1 {
+  text-align: center;
+}
+.icons {
+  display: flex;
+  margin: auto;
+  width: 1280px;
+  height: 302px;
+}
+.icons > li {
+  flex: 1;
+  background: white;
+  margin-top: 49px;
+  height: 302px;
+  text-align: center;
+}
+.icons > li > .icon_img {
+  margin-top: 18px;
+}
+.icons > li:not(:last-child) {
+  margin-right: 20px;
+}
+.icons .contents2 {
+  width: 240px;
+  margin: auto;
+  letter-spacing: -1px;
+}
+.more {
+  width: 100px;
+  height: 30px;
+  background-color: #2F7AF4;
+  color: white;
+  font-size: 12px;
+  line-height: 25px;
+  margin:25px auto;
+}
