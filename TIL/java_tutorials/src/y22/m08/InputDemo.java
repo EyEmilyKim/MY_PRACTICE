@@ -1,4 +1,4 @@
-package aug22;
+package y22.m08;
 
 public class InputDemo {
 
