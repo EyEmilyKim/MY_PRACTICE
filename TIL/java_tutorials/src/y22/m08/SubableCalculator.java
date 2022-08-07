@@ -12,5 +12,10 @@ public class SubableCalculator extends Calculator {
 	public void sub() {
 		System.out.println(this.left - this.right);
 	}
+	
+	public void sum() {
+		System.out.println("합 : " + (this.left + this.right));
+		
+	}
 }
 
