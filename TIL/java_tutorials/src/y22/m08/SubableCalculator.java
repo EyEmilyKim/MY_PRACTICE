@@ -15,7 +15,10 @@ public class SubableCalculator extends Calculator {
 	
 	public void sum() {
 		System.out.println("합 : " + (this.left + this.right));
-		
+	}
+	
+	public int avg() {
+		return super.avg();
 	}
 }
 

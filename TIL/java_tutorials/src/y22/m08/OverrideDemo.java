@@ -6,7 +6,7 @@ public class OverrideDemo {
 		SubableCalculator c1 = new SubableCalculator(10,20);
 		c1.sub();
 		c1.sum();
-		c1.avg();
+		System.out.println("평균 : " +c1.avg());
 
 	}
 
