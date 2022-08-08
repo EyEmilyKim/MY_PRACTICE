@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.io;
 
 public class InputForeachDemo {
 	public static void main(String[] args) {

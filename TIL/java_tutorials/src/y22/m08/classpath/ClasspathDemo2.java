@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.classpath;
 
 class Item2 {
 	public void print() {

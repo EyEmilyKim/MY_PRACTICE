@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.inheritance;
 
 public class CalculatorDemo1 {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.inheritance;
 
 public class DivableCalculator0 extends MulableCalculator0 {
 	public void div() {

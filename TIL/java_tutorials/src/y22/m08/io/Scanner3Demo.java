@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;

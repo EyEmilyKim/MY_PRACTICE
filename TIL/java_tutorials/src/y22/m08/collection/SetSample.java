@@ -1,4 +1,4 @@
-package y22.m08;
+package y22.m08.collection;
 
 import java.util.HashSet;
 import java.util.Set;

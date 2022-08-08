@@ -1,13 +1,14 @@
-package y22.m08;
+package y22.m08.io;
 
 import java.util.Scanner;
 
-public class ScannerDemo {
+public class Scanner2Demo {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int i = sc.nextInt();
-		System.out.println(i*1000);
+		while(sc.hasNextInt()) {
+			System.out.println(sc.nextInt()*1000);
+		}
 		sc.close();
 	}
 
