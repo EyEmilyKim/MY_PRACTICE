@@ -1,2 +1,6 @@
 This is a testing file for repository-restructuring.
 now, lets make a git history. 
+well, after making some more, I'm going to test following commands with this file.
+$ git clone url git_general
+$ git clone --bare url git_bare
+$ git clone --mirror url git_mirror
