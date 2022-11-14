@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	</head>
+<body>
+<div class="calendar">
+	<div class="header">
+		<button class="calendar_btn" onclick="prevCal();">&lt;</button>
+		<div class="title"><span class="year" id="year"></span><span class="month" id="month"></span></div>
+		<button class="calendar_btn" onclick="nextCal();">&gt;</button>
+	</div>
+	<div class="day">
+		<div>S</div>
+		<div>M</div>
+		<div>T</div>
+		<div>W</div>
+		<div>T</div>
+		<div>F</div>
+		<div>S</div>
+	</div>
+	<div class="dates" id="dates"></div>
+</div>
+<div><input type="text" id="period_1"> ~ <input type="text" id="period_2"></div>
+<div>
+	<p>코드 출처 : <a href="https://hyunipad.tistory.com/78">https://hyunipad.tistory.com/78</a></p>	
+</div>
+
+<div style="border: solid 1px blue; width:370px; padding:5px; ">
+	sample capture : <br/>
+	<img src="sample.png" alt="" width="350px">
+</div>
+</body>
+
+<script src="main.js"></script>
+
+</html>

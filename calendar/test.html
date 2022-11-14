@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body {color:red;}
+    </style>
+</head>
+<body>
+<div class="body">
+    안녕하세요. 오늘은 <span id="date"></span> 입니다.
+
+
+
+</div>
+</body>
+<script>
+    console.log("권대훈");
+
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var date = date.getDate();
+    var today = year+"년"+month+"월"+date+"일";
+    document.getElementById("date").innerHTML = today;
+
+    var CDate = new Date(); // 오늘:2022.11.14월
+    var prevLast = new Date(CDate.getFullYear(), CDate.getMonth(), 0); //전월 마지막날
+	var thisFirst = new Date(CDate.getFullYear(), CDate.getMonth(), 1); //금월 첫날
+	var thisLast = new Date(CDate.getFullYear(), CDate.getMonth() + 1, 0); //금월 마지막날
+
+    console.log("prevLast: ",prevLast); //Mon Oct 31 2022 00:00:00 GMT+0900 (한국 표준시)
+    console.log("thisLast: ",thisLast); //Wed Nov 30 2022 00:00:00 GMT+0900 (한국 표준시)
+    console.log("thisFirst: ",thisFirst); //Tue Nov 01 2022 00:00:00 GMT+0900 (한국 표준시)
+
+    console.log("thisFirst.getDay(): ",thisFirst.getDay()); //2: 화
+    console.log("thisLast.getDay(): ",thisLast.getDay()); //3: 수
+
+    for(var i = 0; i < thisFirst.getDay(); i++){
+        console.log(prevLast.getDate()-i);
+	} // 31, 30
+    
+</script>
+</html>
+
