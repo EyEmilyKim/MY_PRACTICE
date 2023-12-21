@@ -1,0 +1,6 @@
+/* 배경 꾸미기는 스타일링에 해당하므로 css에서 작업함. */
+body {
+    background-image: url("image/bg.png");
+    background-size: cover;
+    background-position: center;
+}
