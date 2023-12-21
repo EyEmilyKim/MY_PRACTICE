@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     soundElement.addEventListener('click', function() {
       bgm.play();
+      // bgm.loop = true; // 반복 재생 설정
     });
   
     stopElement.addEventListener('click', function() {
