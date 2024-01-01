@@ -6,9 +6,9 @@ module.exports = function (io) {
   io.on("connection", async (socket) => {
     console.log("client is connected : ", socket.id);
 
+    //User 로그인 하면
     socket.on("login", async (userName, cb) => {
       console.log("backend userName : ", userName);
-
       //User 정보를 저장
       try {
         const user = await userController.saveUser(userName, socket.id);
@@ -23,6 +23,7 @@ module.exports = function (io) {
       }
     });
 
+    //메시지 들어오면
     socket.on("sendMessage", async (message, cb) => {
       try {
         //socket id 로 유저 찾기
@@ -36,6 +37,17 @@ module.exports = function (io) {
         cb({ ok: false, error: error.message });
       }
     });
+
+    //User 퇴장하면
+    socket.on("leaveRoom", async (user, cb)=>{
+      // console.log("퇴장하는 user : ", user);
+      const leavingMessage = {
+        chat: `${user.name} left this room`,
+        user: { id: null, name: "system" },
+      };
+      io.emit("message", leavingMessage);
+      cb({ ok: true });
+    })
 
     socket.on("disconnect", () => {
       console.log("user is disconnected : ", socket.id);
