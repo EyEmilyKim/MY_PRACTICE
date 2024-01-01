@@ -6,10 +6,12 @@ import InputField from "./components/InputField/InputField";
 function App() {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
-
+  const [messageList, setMessageList] = useState([]);
+  console.log("message List", messageList);
   useEffect(() => {
     socket.on("message", (message) => {
       console.log("message", message);
+      setMessageList((prevState) => prevState.concat(message));
     });
     askUserName();
   }, []);
