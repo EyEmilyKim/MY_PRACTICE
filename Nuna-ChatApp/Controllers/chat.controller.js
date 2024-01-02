@@ -5,15 +5,16 @@ chatController.saveChat = async (message, user) => {
   console.log("saveChat called");
   console.log("user.name : ", user.name);
   console.log("message : ", message);
-  const newMessage = new Chat({
+  const newChat = new Chat({
     chat: message,
     user: {
       id: user._id,
       name: user.name,
     },
+    room: user.room, // 메세지에 귀속 룸 정보 저장
   });
-  await newMessage.save();
-  return newMessage;
+  await newChat.save();
+  return newChat;
 };
 
 module.exports = chatController;

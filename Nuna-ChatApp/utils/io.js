@@ -17,7 +17,7 @@ module.exports = function (io) {
         const user = await userController.checkUser(socket.id); //일단 유저정보 들고 오기
         await roomController.joinRoom(rid, user); //room,user모델 업데이트
         const userRoomToString = user.room.toString();
-        console.log("userRoomTostring", userRoomToString);
+        // console.log("userRoomTostring", userRoomToString);
         socket.join(userRoomToString); //해당 룸채널 조인
         const welcomeMessage = {
           chat: `${user.name} joined this room`,
@@ -45,15 +45,18 @@ module.exports = function (io) {
     });
 
     //메시지 들어오면
-    socket.on("sendMessage", async (message, cb) => {
+    socket.on("sendMessage", async (receivedMessage, cb) => {
       try {
         //socket id 로 유저 찾기
         const user = await userController.checkUser(socket.id);
-        //메세지 저장(유저 정보 전달)
-        const newMessage = await chatController.saveChat(message, user);
+        if (user){
+          //메세지 저장(유저 정보 전달)
+          const newMessage = await chatController.saveChat(receivedMessage, user);
+  
+          io.to(user.room.toString()).emit("message", newMessage);
+          cb({ ok: true });
 
-        io.emit("message", newMessage);
-        cb({ ok: true });
+        }
       } catch (error) {
         cb({ ok: false, error: error.message });
       }
