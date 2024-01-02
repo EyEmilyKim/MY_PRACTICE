@@ -10,13 +10,18 @@ function App() {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   console.log("message List", messageList);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
+    askUserName();
+    socket.on("rooms", (rooms)=>{
+      setRooms(rooms);
+      console.log("rooms", rooms);
+    });
     socket.on("message", (message) => {
       console.log("message", message);
       setMessageList((prevState) => prevState.concat(message));
     });
-    askUserName();
   }, []);
 
   const askUserName = () => {

@@ -1,11 +1,15 @@
 const chatController = require("../Controllers/chat.controller");
 const userController = require("../Controllers/user.controller");
+const roomController = require("../Controllers/room.controller");
 
 module.exports = function (io) {
   // io 관련 모든 일
   io.on("connection", async (socket) => {
     console.log("client is connected : ", socket.id);
 
+    //룸 정보 보내주기
+    socket.emit("rooms", await roomController.getAllRooms());
+    
     //User 로그인 하면
     socket.on("login", async (userName, cb) => {
       console.log("backend userName : ", userName);
@@ -48,6 +52,9 @@ module.exports = function (io) {
       io.emit("message", leavingMessage);
       cb({ ok: true });
     })
+
+
+
 
     socket.on("disconnect", () => {
       console.log("user is disconnected : ", socket.id);
