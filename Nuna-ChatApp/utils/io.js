@@ -63,14 +63,27 @@ module.exports = function (io) {
     });
 
     //User 퇴장하면
-    socket.on("leaveRoom", async (user, cb) => {
-      // console.log("퇴장하는 user : ", user);
-      const leavingMessage = {
-        chat: `${user.name} left this room`,
-        user: { id: null, name: "system" },
-      };
-      io.emit("message", leavingMessage);
-      cb({ ok: true });
+    socket.on("leaveRoom", async (_, cb) => {
+      try {
+        //유저 정보를 찾아 room 정보 업데이트
+        const user = await userController.checkUser(socket.id);
+        console.log("퇴장하는 user : ", user);
+        await roomController.leaveRoom(user);
+        //해당 룸에 퇴장메시지 남김
+        const leavingMessage = {
+          chat: `${user.name} left this room`,
+          user: { id: null, name: "system" },
+        };
+      socket.broadcast.to(user.room.toString()).emit("message", leavingMessage); //socket.broadcast 의 경우 io.to()와 달리, 나를 제외한 채팅방에 모든 멤버에게 메세지를 보냄
+        //소켓에서 해당 룸 퇴장 처리
+        io.emit("rooms", await roomController.getAllRooms());
+        socket.leave(user.room.toString()); //join했던 방을 떠남
+        cb({ ok: true });
+        
+      } catch (error) {
+        cb({ ok: false, message: error.message });
+        
+      }
     });
 
     socket.on("disconnect", () => {
