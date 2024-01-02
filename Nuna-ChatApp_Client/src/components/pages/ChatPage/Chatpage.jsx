@@ -4,8 +4,12 @@ import MessageContainer from "../../MessageContainer/MessageContainer"
 import InputField from "../../InputField/InputField";
 import LeaveButton from "../../LeaveButton/LeaveButton";
 import './ChatPage.css'
+import { useParams } from "react-router-dom";
 
 const ChatPage = ({ user }) => {
+    const { id } = useParams() //url에서 룸id 가져오기
+    console.log("ChatPage id", id);
+
     const [messageList, setMessageList] = useState([]);
     console.log("messageList", messageList);
     const [message, setMessage] = useState("");
@@ -15,6 +19,14 @@ const ChatPage = ({ user }) => {
             console.log("message", res);
             setMessageList((prevState) => prevState.concat(res));
         });
+        socket.emit("joinRoom", id, (res) => {
+            if (res && res.ok) {
+                console.log("successsfully joined", res)
+            }
+            else {
+                console.log("failed to join", res);
+            }
+        })
 
     }, [])
 
