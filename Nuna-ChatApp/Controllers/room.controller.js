@@ -6,6 +6,12 @@ roomController.getAllRooms = async () => {
   return roomList;
 };
 
+roomController.checkRoom = async (rid) => {
+  const room = await Room.findById(rid);
+  console.log("checkRoom", room);
+  return room;
+}
+
 roomController.joinRoom = async (roomId, user) => {
   console.log("roomController/joinRoom called");
   console.log("roomId", roomId);

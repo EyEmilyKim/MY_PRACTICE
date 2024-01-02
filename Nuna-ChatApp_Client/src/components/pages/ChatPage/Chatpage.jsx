@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import socket from "../../../server";
 import MessageContainer from "../../MessageContainer/MessageContainer"
 import InputField from "../../InputField/InputField";
-import LeaveButton from "../../LeaveButton/LeaveButton";
 import './ChatPage.css'
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@mui/base/Button";
@@ -10,6 +9,7 @@ import { Button } from "@mui/base/Button";
 const ChatPage = ({ user }) => {
     const { id } = useParams() //url에서 룸id 가져오기
     console.log("ChatPage id", id);
+    const [roomTitle, setRoomTitle] = useState("");
 
     const [messageList, setMessageList] = useState([]);
     console.log("messageList", messageList);
@@ -24,6 +24,7 @@ const ChatPage = ({ user }) => {
         socket.emit("joinRoom", id, (res) => {
             if (res && res.ok) {
                 console.log("successfully joined", res)
+                setRoomTitle(res.room);
             }
             else {
                 console.log("failed to join", res);
@@ -55,8 +56,11 @@ const ChatPage = ({ user }) => {
         <div>
             <div className="App">
                 <nav>
-                    <Button onClick={leaveRoom} className="back-button">←</Button>
                     <div className="nav-user">{user.name}</div>
+                    <div className="nav-room">
+                        <Button onClick={leaveRoom} className="back-button">←</Button>
+                        <div className="room-title">{roomTitle}</div>
+                    </div>
                 </nav>
                 <div className="upper-container">
                     {messageList.length > 0 ? (<MessageContainer messageList={messageList} user={user} />) : null}

@@ -14,7 +14,10 @@ module.exports = function (io) {
     socket.on("joinRoom", async (rid, cb) => {
       console.log("io.js/joinRoom called");
       try {
-        const user = await userController.checkUser(socket.id); //일단 유저정보 들고 오기
+        
+        const user = await userController.checkUser(socket.id); //유저정보 들고 오기
+        const room = await roomController.checkRoom(rid); //룸정보 들고 오기
+        
         await roomController.joinRoom(rid, user); //room,user모델 업데이트
         const userRoomToString = user.room.toString();
         // console.log("userRoomTostring", userRoomToString);
@@ -25,7 +28,7 @@ module.exports = function (io) {
         };
         io.to(userRoomToString).emit("message", welcomeMessage); //해당룸에 유저 입장 메세지 보냄
         io.emit("rooms", await roomController.getAllRooms()); //실시간 룸정보 전체 유저들에게 보냄
-        cb({ ok: true });
+        cb({ ok: true, room: room.room });
       } catch (error) {
         cb({ ok: false, error: error.message});
       }
