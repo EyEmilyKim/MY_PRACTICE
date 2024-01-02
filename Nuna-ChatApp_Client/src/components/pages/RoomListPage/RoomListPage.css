@@ -18,7 +18,7 @@
     align-items: center;
     background-color: white;
     padding:10px;
-    justify-content: space-between;
+    justify-content: flex-start;
 
 }
 .room-list:hover{
@@ -33,6 +33,10 @@
     display: flex;
 }
 .member-number{
+    color: gray;
+    margin-left: 10px;
+}
+.new-badge{
     color: white;
     background-color: rgb(237, 71, 71);
     border-radius: 50px;

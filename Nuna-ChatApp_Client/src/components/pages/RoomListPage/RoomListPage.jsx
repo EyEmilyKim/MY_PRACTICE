@@ -22,7 +22,7 @@ const RoomListPage = ({ rooms }) => {
                             <img src="/profile.jpeg" />
                             <p>{room.room}</p>
                         </div>
-                        <div className="member-number">{room.members.length}</div>
+                        <div className="member-number">({room.members.length}명)</div>
                     </div>
                 )) : null}
         </div>
