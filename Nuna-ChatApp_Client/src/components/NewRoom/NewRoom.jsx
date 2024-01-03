@@ -33,7 +33,7 @@ const NewRoom = () => {
       <form onSubmit={createRoom} className="newRoom-container">
         <Input
           className="newRoom-input"
-          placeholder="Wanna create a new room? Type the title here.."
+          placeholder="새로운 방 제목.."
           value={newTitle}
           onChange={(event) => {
             setNewTitle(event.target.value);
