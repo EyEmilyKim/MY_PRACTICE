@@ -12,13 +12,14 @@ roomController.checkRoom = async (rid) => {
   return room;
 };
 
-roomController.createRoom = async (rTitle, user) => {
+// 룸 새로 만들기
+roomController.createRoom = async (rTitle) => {
   console.log("roomController/createRoom called");
   // 이미 존재하는 방제목인지 확인
   let room = await Room.findOne({ title: rTitle });
   // -> 있으면 알려주기
   if (room) {
-    throw new error("이미 존재하는 방 제목입니다.");
+    throw new Error("이미 존재하는 방 제목입니다.");
   }
   // -> 없으면 새로 방정보 만들기
   else {
@@ -27,7 +28,7 @@ roomController.createRoom = async (rTitle, user) => {
     });
   }
   await room.save();
-  console.log("saved Room", room);
+  console.log("roomController/createRoom done", room);
   return room;
 };
 

@@ -23,6 +23,7 @@ const NewRoom = () => {
       }
       else {
         console.log("failed to created", res);
+        alert(res.error);
       }
     })
   }
