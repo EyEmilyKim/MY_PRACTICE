@@ -1,1 +1,10 @@
-
+.home-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.home-title {
+  color: red;
+  /* font-size: 24px; */
+}
