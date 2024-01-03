@@ -21,7 +21,7 @@ const RoomListPage = ({ rooms }) => {
                     <div className="room-list" key={room._id} onClick={() => moveToChat(room._id)}>
                         <div className="room-title">
                             <img src="/profile.jpeg" />
-                            <p>{room.room}</p>
+                            <p>{room.title}</p>
                         </div>
                         <div className="member-number">({room.members.length}명)</div>
                     </div>

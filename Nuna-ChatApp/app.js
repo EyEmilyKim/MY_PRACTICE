@@ -14,15 +14,15 @@ mongoose.connect(process.env.DB)
 app.get("/", async(req, res)=>{
     Room.insertMany([
         {
-            room: "자바스크립트 단톡방",
+            title: "*자바스크립트 단톡방",
             members: [],
         },
         {
-            room: "리액트 단톡방",
+            title: "*리액트 단톡방",
             members: [],
         },
         {
-            room: "NodeJS 단톡방",
+            title: "*NodeJS 단톡방",
             members: [],
         },
     ])

@@ -10,7 +10,26 @@ roomController.checkRoom = async (rid) => {
   const room = await Room.findById(rid);
   console.log("checkRoom", room);
   return room;
-}
+};
+
+roomController.createRoom = async (rTitle, user) => {
+  console.log("roomController/createRoom called");
+  // 이미 존재하는 방제목인지 확인
+  let room = await Room.findOne({ title: rTitle });
+  // -> 있으면 알려주기
+  if (room) {
+    throw new error("이미 존재하는 방 제목입니다.");
+  }
+  // -> 없으면 새로 방정보 만들기
+  else {
+    room = new Room({
+      title: rTitle,
+    });
+  }
+  await room.save();
+  console.log("saved Room", room);
+  return room;
+};
 
 roomController.joinRoom = async (roomId, user) => {
   console.log("roomController/joinRoom called");
@@ -34,7 +53,7 @@ roomController.joinRoom = async (roomId, user) => {
 
 roomController.leaveRoom = async (user) => {
   const room = await Room.findById(user.room);
-  if(!room){
+  if (!room) {
     throw new Error("Room not found");
   }
   room.members.remove(user._id);
