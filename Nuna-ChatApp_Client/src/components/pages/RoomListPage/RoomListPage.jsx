@@ -1,7 +1,8 @@
-import React, {useEffenct, useState} from "react";
+import React, { useEffect, useState } from "react";
 import socket from "../../../server";
 import { useNavigate } from "react-router-dom";
 import "./RoomListPage.css";
+import NewRoom from "../../NewRoom/NewRoom";
 
 const RoomListPage = ({ rooms }) => {
 
@@ -24,7 +25,11 @@ const RoomListPage = ({ rooms }) => {
                         </div>
                         <div className="member-number">({room.members.length}명)</div>
                     </div>
-                )) : null}
+                ))
+            : null}
+
+            <NewRoom />
+
         </div>
     );
 
