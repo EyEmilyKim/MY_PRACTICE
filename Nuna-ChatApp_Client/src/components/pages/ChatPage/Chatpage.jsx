@@ -3,7 +3,7 @@ import socket from "../../../server";
 import MessageContainer from "../../MessageContainer/MessageContainer"
 import InputField from "../../InputField/InputField";
 import './ChatPage.css'
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@mui/base/Button";
 
 const ChatPage = ({ user }) => {

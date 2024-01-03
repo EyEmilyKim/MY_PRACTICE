@@ -32,12 +32,10 @@ roomController.createRoom = async (rTitle) => {
   return room;
 };
 
+// 룸 입장하기
 roomController.joinRoom = async (roomId, user) => {
-  console.log("roomController/joinRoom called");
-  console.log("roomId", roomId);
-
+  console.log("roomController/joinRoom called", user, roomId);
   const room = await Room.findById(roomId);
-
   if (!room) {
     throw new Error("해당 방이 없습니다.");
   }
@@ -48,11 +46,12 @@ roomController.joinRoom = async (roomId, user) => {
   user.room = roomId;
   const userRoomToString = user.room.toString();
   await user.save();
-
   console.log("roomController/joinRoom done");
 };
 
+// 룸 퇴장하기
 roomController.leaveRoom = async (user) => {
+  console.log("roomController/leaveRoom called", user);
   const room = await Room.findById(user.room);
   if (!room) {
     throw new Error("Room not found");
@@ -60,6 +59,19 @@ roomController.leaveRoom = async (user) => {
   room.members.remove(user._id);
   await room.save();
   console.log("roomController/leaveRoom done");
+  return room;
+};
+
+// 룸 삭제하기
+roomController.deleteRoom = async (roomId) => {
+  console.log("roomController/deleteRoom called", roomId);
+  const room = await Room.findById(roomId);
+  if (!room) {
+    console.log("해당 방이 없습니다.");
+    return;
+  }
+  await Room.deleteOne(room);
+  console.log("roomController/deleteRoom done");
 };
 
 module.exports = roomController;

@@ -84,7 +84,7 @@ module.exports = function (io) {
         //유저 정보를 찾아 룸 정보 업데이트
         const user = await userController.checkUser(socket.id);
         console.log("퇴장하는 user : ", user);
-        await roomController.leaveRoom(user);
+        const room = await roomController.leaveRoom(user);
         //해당 룸에 퇴장메시지 남김
         const leavingMessage = {
           chat: `${user.name} left this room`,
@@ -96,9 +96,14 @@ module.exports = function (io) {
         //소켓에서 해당 룸 퇴장 처리
         io.emit("rooms", await roomController.getAllRooms());
         socket.leave(user.room.toString()); //해당 룸채널을 떠남
+        //해당 룸 0명이면 삭제
+        if (room.members.length == 0) {
+          await roomController.deleteRoom(room._id);
+          io.emit("rooms", await roomController.getAllRooms());
+        }
         cb({ ok: true });
       } catch (error) {
-        cb({ ok: false, message: error.message });
+        cb({ ok: false, error: error.message });
       }
     });
 

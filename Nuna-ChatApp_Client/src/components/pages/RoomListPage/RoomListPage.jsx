@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import socket from "../../../server";
 import { useNavigate } from "react-router-dom";
 import "./RoomListPage.css";
 import NewRoom from "../../NewRoom/NewRoom";
