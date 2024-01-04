@@ -12,26 +12,12 @@ function App() {
 
   useEffect(() => {
 
-    askUserName();
-
     socket.on("rooms", (rooms) => {
       setRooms(rooms);
       console.log("rooms", rooms);
     });
     
   }, []);
-
-  const askUserName = () => {
-    const userName = prompt("당신의 이름을 입력하세요");
-    console.log("prompt userName : ", userName);
-
-    socket.emit("login", userName, (res) => {
-      console.log("login res : ", res);
-      if (res?.ok) {
-        setUser(res.data);
-      }
-    });
-  };
 
   return (
     <BrowserRouter>

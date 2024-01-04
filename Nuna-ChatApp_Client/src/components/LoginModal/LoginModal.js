@@ -5,17 +5,29 @@ import { styled, css, border } from "@mui/system";
 import { Modal as BaseModal } from "@mui/base/Modal";
 import { Button, Input } from "@mui/base";
 import "./LoginModal.css";
+import socket from "../../server";
 
-export default function LoginModal() {
+export default function LoginModal({handleLoginSuccess}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [userName, setUserName] = React.useState("");
 
-  const doLogin = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
-    console.log("doLogin called", userName);
+    console.log("handleLogin called", userName);
+
+    socket.emit("login", userName, (res) => {
+      console.log("login res : ", res);
+      if (res?.ok) {
+        handleLoginSuccess(res.user);
+      } else {
+        alert('로그인에 실패했습니다 ! 관리자에게 문의해주세요..');
+      }
+    });
+
+    handleClose();
   };
 
   return (
@@ -35,7 +47,7 @@ export default function LoginModal() {
             로그인 하기
           </h2>
 
-          <form onSubmit={doLogin} className="login-container">
+          <form onSubmit={handleLogin} className="login-container">
             <Input
               placeholder="닉네임을 입력하세요.."
               className="login-input"

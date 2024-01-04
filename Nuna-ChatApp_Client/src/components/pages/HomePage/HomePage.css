@@ -8,3 +8,18 @@
   color: red;
   /* font-size: 24px; */
 }
+.loggedIn-area, .nonLoggedIn-area {
+  /* border: solid 3px yellow; */
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.welcome-userName {
+  font-weight: 700;
+}
+.logout-button{
+  color: blue;
+  font-weight: bold;
+  padding: 10px;
+}

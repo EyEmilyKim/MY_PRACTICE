@@ -13,7 +13,7 @@ module.exports = function (io) {
       //유저 정보를 저장
       try {
         const user = await userController.saveUser(userName, socket.id);
-        cb({ ok: true, data: user });
+        cb({ ok: true, user: user });
       } catch (error) {
         cb({ ok: false, error: error.message });
       }
