@@ -2,8 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RoomListPage.css";
 import NewRoom from "../../NewRoom/NewRoom";
+import socket from "../../../server";
 
-const RoomListPage = ({ rooms }) => {
+const RoomListPage = () => {
+    const [rooms, setRooms] = useState([]);
+    const [user, setUser] = useState(null);
+    console.log("user", user);
+
+    useEffect(() => {
+
+        socket.emit('getRooms');
+        socket.on("rooms", (rooms) => {
+            setRooms(rooms);
+            console.log("rooms", rooms);
+        });
+
+    }, []);
 
     const navigate = useNavigate();
 
@@ -25,7 +39,7 @@ const RoomListPage = ({ rooms }) => {
                         <div className="member-number">({room.members.length}명)</div>
                     </div>
                 ))
-            : null}
+                : null}
 
             <NewRoom />
 

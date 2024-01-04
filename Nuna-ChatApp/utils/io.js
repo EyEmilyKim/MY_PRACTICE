@@ -20,7 +20,10 @@ module.exports = function (io) {
     });
 
     //룸 정보 보내주기
-    socket.emit("rooms", await roomController.getAllRooms());
+    socket.on("getRooms", async ()=>{
+      console.log("io.js/getRooms called");
+      socket.emit("rooms", await roomController.getAllRooms());
+    })
 
     //룸 입장하기
     socket.on("joinRoom", async (rid, cb) => {
