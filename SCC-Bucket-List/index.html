@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 버킷리스트</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/scc-style-sheet.css"
+    />
+  </head>
+
+  <body class="bg-t3 center">
+    <h1 class="title">2024년 신년계획</h1>
+    <p class="msg">올해 안에 3가지를 달성하지 못할 경우,</p>
+    <p class="msg">OOO을 하겠습니다!</p>
+    <div class="flex-row wrap">
+      <div class="bucket img1-t5 center">나만의 웹 만들기</div>
+      <div class="bucket img2-t5 center">바디프로필 찍기</div>
+      <div class="bucket img2-t5 center">방 인테리어 꾸미기</div>
+      <div class="bucket img1-t5 center">식물 키우기</div>
+      <div class="bucket img1-t5 center">반드시 10킬로그램 감량!</div>
+      <div class="bucket img2-t5 center">내가 만든 웹사이트 자랑하기</div>
+    </div>
+
+    <script>
+        
+        // 페이지 로드 시 이전 상태 복원
+        document.addEventListener("DOMContentLoaded", (event) => {
+            const buckets = document.querySelectorAll(".bucket");
+            buckets.forEach((bucket, index) => {
+                // 로컬 스토리지에서 상태 읽기
+                const isDone = localStorage.getItem("bucket" + index) === "done";
+                if (isDone) {
+                    bucket.classList.add("done");
+                }
+            });
+        });
+
+        // 버킷 리스트 클릭 이벤트
+        const buckets = document.querySelectorAll(".bucket");
+        buckets.forEach((bucket, index) => {
+            bucket.addEventListener("click", function () {
+                // 클래스 토글
+                bucket.classList.toggle("done");
+
+                // 로컬 스토리지에 상태 저장
+                if (bucket.classList.contains("done")) {
+                    localStorage.setItem("bucket" + index, "done");
+                } else {
+                    localStorage.setItem("bucket" + index, "");
+                }
+            });
+        });
+    
+    </script>
+  </body>
+</html>
