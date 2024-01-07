@@ -8,11 +8,11 @@ module.exports = function (io) {
     console.log("client is connected : ", socket.id);
 
     //유저 로그인 하면
-    socket.on("login", async (userName, cb) => {
-      console.log("io.js/login called ", userName);
+    socket.on("login", async (un, pw, cb) => {
+      console.log("io.js/login called ", un);
       //유저 정보를 저장
       try {
-        const user = await userController.saveUser(userName, socket.id);
+        const user = await userController.saveUser(un, pw, socket.id);
         cb({ ok: true, user: user });
       } catch (error) {
         cb({ ok: false, error: error.message });

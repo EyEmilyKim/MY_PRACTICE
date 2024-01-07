@@ -16,11 +16,12 @@ const HomePage = () => {
     }
     const handleLogoutSuccess = () => {
         setIsLoggedIn(false);
+        setUser(null);
     }
 
     const navigate = useNavigate();
 
-    const moveToRoomList = (userName) => {
+    const moveToRoomList = () => {
         navigate(`/roomList`);
     }
     return (

@@ -13,12 +13,13 @@ export default function LoginModal({handleLoginSuccess}) {
   const handleClose = () => setOpen(false);
 
   const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleLogin = (event) => {
     event.preventDefault();
     console.log("handleLogin called", userName);
 
-    socket.emit("login", userName, (res) => {
+    socket.emit("login", userName, password, (res) => {
       console.log("login res : ", res);
       if (res?.ok) {
         handleLoginSuccess(res.user);
@@ -49,11 +50,21 @@ export default function LoginModal({handleLoginSuccess}) {
 
           <form onSubmit={handleLogin} className="login-container">
             <Input
-              placeholder="닉네임을 입력하세요.."
+              placeholder="닉네임"
               className="login-input"
               value={userName}
               onChange={(event) => {
                 setUserName(event.target.value);
+              }}
+              multiline={false}
+              rows={1}
+            />
+            <Input
+              placeholder="비밀번호"
+              className="login-input"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
               }}
               multiline={false}
               rows={1}
